@@ -3,21 +3,22 @@ var router = express.Router()
 
 const nameList = { names: ['Vuctor', 'Danuel'] }
 
-router.get('/', function (req, res) {
-    res.json(nameList.names.map((name) => `Hello, ${name}`))
-})
+router.get('/', (req, res) => res.json(nameList.names.map((name) => `Hello, ${name}`)))
 
-router.get('/greeting', function (req, res) {
-    const { greet } = req.query
-    res.send(nameList.names.map((name) => `${greet}, ${name}`).join('<br>'))
-})
+router.get(
+    '/greeting',
+    (req, res, next) => {
+        const { greet } = req.query
 
-router.post('/', function (req, res) {
-    res.send('Got a POST request at /test')
-})
+        req.greeting = nameList.names.map((name) => `${greet}, ${name}`).join('<br>')
 
-router.put('/', function (req, res) {
-    res.send('Got a PUT request at /test')
-})
+        next()
+    },
+    (req, res, name) => res.send(req.greeting)
+)
+
+router.post('/', (req, res) => res.send('Got a POST request at /test'))
+
+router.put('/', (req, res) => res.send('Got a PUT request at /test'))
 
 module.exports = router
