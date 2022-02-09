@@ -1,4 +1,5 @@
 var express = require('express')
+var cors = require('cors')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
@@ -11,6 +12,8 @@ var loggerRouter = require('./routes/logger')
 var cookieValidator = require('./cookieValidator')
 
 var app = express()
+
+app.use(cors())
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -34,4 +37,4 @@ app.use('/logger', loggerRouter)
 
 // app.use((err, req, res, next) => res.status(400).send(err.message))
 
-module.exports = app
+module.exports = { app }

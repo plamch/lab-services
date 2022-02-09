@@ -14,7 +14,7 @@ router.get(
 
         next()
     },
-    (req, res, name) => res.send(req.greeting)
+    (req, res, name) => res.json({ greeting: req.greeting })
 )
 
 router.post('/', (req, res) => res.send('Got a POST request at /test'))
