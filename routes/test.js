@@ -10,7 +10,7 @@ router.get(
     (req, res, next) => {
         const { greet } = req.query
 
-        req.greeting = nameList.names.map((name) => `${greet}, ${name}`).join('<br>')
+        req.greeting = nameList.names.map((name) => `${greet}, ${name}`).join('; ')
 
         next()
     },

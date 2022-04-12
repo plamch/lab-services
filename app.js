@@ -26,7 +26,7 @@ async function validateCookies(req, res, next) {
     next()
 }
 
-app.use(validateCookies)
+// app.use(validateCookies)
 
 app.use(express.static(path.join(__dirname, 'public')))
 
