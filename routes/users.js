@@ -43,6 +43,18 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    await prisma.user.update({
+        where: {
+            id: Number(req.params.id),
+        },
+        data: {
+            name: req.body.name,
+            email: req.body.email,
+        },
+    })
+})
+
 router.patch('/', async (req, res) => {
     await prisma.user.update({
         where: {
