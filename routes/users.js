@@ -28,6 +28,7 @@ router.get('/admins', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    await delay(1000)
     try {
         const { name, email } = req.body
         await prisma.user.create({
